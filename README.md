@@ -1,2 +1,2 @@
 # vue-start
-vue + elementui 
+vue2.0
