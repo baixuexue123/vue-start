@@ -41,7 +41,7 @@ export default {
             self.$refs[formName].validate((valid) => {
                 if (valid) {
                     localStorage.setItem('ms_username',self.ruleForm.username);
-                    self.$router.push('/readme');
+                    self.$router.push('/home');
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -64,7 +64,6 @@ export default {
         top:50%;
         width:300px;
         height:160px;
-        margin:-150px 0 0 -190px;
         padding:40px;
         border-radius: 5px;
         background: #fff;

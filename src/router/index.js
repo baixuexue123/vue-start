@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '../views/Home.vue'
 
 Vue.use(Router);
 
@@ -10,8 +11,12 @@ export default new Router({
             redirect: '/login'
         },
         {
+            path: '/home',
+            component: Home
+        },
+        {
             path: '/readme',
-            component: resolve => require(['../views/Home.vue'], resolve),
+            component: resolve => require(['../views/Readme.vue'], resolve),
             children:[
                 {
                     path: '/',
