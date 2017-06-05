@@ -17,11 +17,11 @@ export default new Router({
         {
             path: '/basetable',
             component: resolve => require(['../views/BaseTable.vue'], resolve)
-        },        
+        },
         {
             path: '/baseform',
             component: resolve => require(['../views/BaseForm.vue'], resolve)
-        },        
+        },
         {
             path: '/readme',
             component: resolve => require(['../views/Readme.vue'], resolve),
