@@ -15,11 +15,11 @@ export default new Router({
             component: Home
         },
         {
-            path: '/basetable',
+            path: '/table',
             component: resolve => require(['../views/BaseTable.vue'], resolve)
         },
         {
-            path: '/baseform',
+            path: '/form',
             component: resolve => require(['../views/BaseForm.vue'], resolve)
         },
         {
@@ -31,11 +31,11 @@ export default new Router({
                     component: resolve => require(['../views/Readme.vue'], resolve)
                 },
                 {
-                    path: 'basetable',
+                    path: 'table',
                     component: resolve => require(['../views/BaseTable.vue'], resolve)
                 },
                 {
-                    path: 'baseform',
+                    path: 'form',
                     component: resolve => require(['../views/BaseForm.vue'], resolve)
                 }
             ]
