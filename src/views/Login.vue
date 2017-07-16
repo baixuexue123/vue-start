@@ -2,7 +2,7 @@
     <div class="login-wrap">
         <div class="ms-title">后台管理系统</div>
         <div class="ms-login">
-            <el-form v-bind:model="ruleForm" v-bind:rules="rules" ref="ruleForm" class="demo-ruleForm">
+            <el-form v-bind:model="ruleForm" v-bind:rules="rules" ref="ruleForm">
                 <el-form-item prop="username">
                     <el-input v-model="ruleForm.username" placeholder="username"></el-input>
                 </el-form-item>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data: function(){
         return {
@@ -40,13 +41,21 @@ export default {
             const self = this;
             self.$refs[formName].validate((valid) => {
                 if (valid) {
-                    localStorage.setItem('ms_username',self.ruleForm.username);
-                    self.$router.push('/home');
+                    axios.post('/login',
+                        {username: self.ruleForm.username,
+                         password: self.ruleForm.password})
+                        .then((res) => {
+                            if (res.status === '1') {
+                                localStorage.setItem('token', res.token);
+                                self.$router.push('/home');
+                            }
+                        }).catch((err) => {
+                        console.log(err)
+                    });
                 } else {
-                    console.log('error submit!!');
                     return false;
                 }
-            });
+            })
         }
     }
 }
