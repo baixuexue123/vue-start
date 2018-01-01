@@ -41,12 +41,11 @@ export default {
             const self = this;
             self.$refs[formName].validate((valid) => {
                 if (valid) {
-                    axios.post('/login',
+                    axios.post('/admin/login',
                         {username: self.ruleForm.username,
                          password: self.ruleForm.password})
                         .then((res) => {
                             if (res.status === '1') {
-                                localStorage.setItem('token', res.token);
                                 self.$router.push('/home');
                             }
                         }).catch((err) => {

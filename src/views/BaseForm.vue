@@ -1,4 +1,7 @@
 <template>
+<div>
+    <my-menu activeIndex="2-2"></my-menu>
+
     <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="活动名称">
             <el-input v-model="form.name"></el-input>
@@ -43,10 +46,16 @@
             <el-button>取消</el-button>
         </el-form-item>
     </el-form>
+</div>
 </template>
 
 <script>
+import Menu from './menu.vue'
 export default {
+    name: 'my-form',
+    components: {
+        'my-menu': Menu
+    },
     data() {
         return {
             form: {

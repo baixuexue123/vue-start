@@ -1,5 +1,7 @@
 <template>
     <div>
+        <my-menu activeIndex="2-3"></my-menu>
+
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-setting"></i> 自述</el-breadcrumb-item>
@@ -38,11 +40,15 @@
 </template>
 
 <script>
-    export default {
-        data: function(){
-            return {}
-        }
+import Menu from './menu.vue'
+export default {
+    components: {
+        'my-menu': Menu,
+    },    
+    data: function(){
+        return {}
     }
+}
 </script>
 
 <style scoped>
