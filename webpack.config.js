@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: './src/main.js',
@@ -12,7 +14,15 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                  loaders: {
+                    css: ExtractTextPlugin.extract({
+                        use: 'css-loader',
+                        fallback: 'vue-style-loader'
+                      }),
+                  }
+                }
             },
             {
                 test: /\.js$/,
@@ -21,7 +31,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: [
+                  'vue-style-loader',
+                  'css-loader'
+                ],
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
@@ -37,6 +50,7 @@ module.exports = {
         ]
     },
     resolve: {
+        extensions: ['*', '.js', '.vue', '.json'],
         alias: {
             '@': path.resolve(__dirname, 'src'),
             'vue$': 'vue/dist/vue.esm.js',
@@ -50,12 +64,25 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        noInfo: true
+        noInfo: true,
+        overlay: true
     },
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map'
+    devtool: '#eval-source-map',
+    plugins:[
+        new HtmlWebpackPlugin({
+            filename:'index.html',
+            title:'vue demo',
+            template:'./index.html',
+        }),
+        new ExtractTextPlugin("styles/style.css"),
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    externals:{
+        'jquery':'window.jQuery'
+    }
 };
 
 if (process.env.NODE_ENV === 'production') {
