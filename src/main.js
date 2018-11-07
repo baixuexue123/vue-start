@@ -1,13 +1,21 @@
-import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import axios from 'axios';
+import ElementUI from 'element-ui';
+import 'normalize.css/normalize.css';
+import 'element-ui/lib/theme-chalk/index.css';
+import 'font-awesome/css/font-awesome.min.css';
+import App from './App';
+import router from './router';
+import '@/styles/icon.css';
 
-Vue.use(ElementUI);
+Vue.config.productionTip = false;
+Vue.prototype.$axios = axios;
+Vue.use(ElementUI, { size: 'small' });
 
+/* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router: router,
-    render: h => h(App)
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>',
 });
